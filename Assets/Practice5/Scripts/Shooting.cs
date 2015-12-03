@@ -5,7 +5,7 @@ public class Shooting : MonoBehaviour {
 	LineRenderer laserLine;
 	public float shootRange = 15f;
 	public GameObject star;
-	//public GameObject Player;
+	
 	
 	void Awake()
 	{
@@ -17,6 +17,7 @@ public class Shooting : MonoBehaviour {
 		
 		Instantiate(star, new Vector3(transform.position.x + 20f, transform.position.y, transform.position.z), Quaternion.identity);
 		//  Player = GameObject.Find("MouthShoot");
+        
 	}
 	
 	// Update is called once per frame
@@ -24,22 +25,26 @@ public class Shooting : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
 			Debug.Log("Start shooting");
-			//ShootZ();
 			Shoot('l');
 		}
 		
 		if (Input.GetKeyDown(KeyCode.X))
 		{
 			Debug.Log("Start shooting");
-			//ShootX();
 			Shoot('r');
 		}
+
+
+        
 	}
 	
-	private void Shoot(char direction)    //IEnumerator
+	private void Shoot(char direction)    
 	{
+       int layerMask = 1 << 8;
+       layerMask = ~layerMask;
 		Ray ray;
-		Vector3 position;
+        Vector3 position;
+
 		laserLine.enabled = true;
 		if (direction == 'r'){
 			position = new Vector3(transform.position.x + 2f, transform.position.y, transform.position.z);
@@ -51,21 +56,37 @@ public class Shooting : MonoBehaviour {
 			laserLine.SetPosition(0, position);
 			ray = new Ray(transform.parent.transform.position, Vector3.left);
 		}
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, shootRange))
+		
+
+        RaycastHit hit;
+   
+
+        if (Physics.Raycast(ray, out hit, shootRange, layerMask))
 		{
 			laserLine.SetPosition(1, hit.point);
 			Destroy(hit.collider.gameObject);
 			Debug.Log("You've destroyed Death Star");
 			ScoreIncrease.Score +=10;
-			//Player.GetComponent<ScoreManager>().score += 10;          
-			//Instantiate(star, new Vector3(transform.position.x + 15f, transform.position.y, transform.position.z), Quaternion.identity);
-            float randomRange=Random.Range(-19.0F, 19.0F);
-            if ((transform.position.x + randomRange > transform.parent.transform.position.x - 5f) && (transform.position.x + randomRange < transform.parent.transform.position.x + 5f))
-                Instantiate(star, new Vector3(transform.parent.transform.position.x + 10f, transform.position.y, transform.position.z), Quaternion.identity); 
+            
+            float randomRangeX=Random.Range(-19.0F, 19.0F);
+            float randomRangeY = Random.Range(-3.0F, 10.0F);
+        
+            if ((transform.position.x + randomRangeX > transform.parent.transform.position.x - 1f) && (transform.position.x + randomRangeX < transform.parent.transform.position.x + 1f))
+            {
+                Instantiate(star, new Vector3(transform.parent.transform.position.x + 10f, transform.position.y, transform.position.z), Quaternion.identity);
+                Debug.Log("not random");
+            }
             else
-                Instantiate(star, new Vector3(transform.position.x + randomRange, transform.position.y, transform.position.z), Quaternion.identity);
-
+                if ((transform.position.y + randomRangeY > transform.parent.transform.position.y - 1f) && (transform.position.y + randomRangeY < transform.parent.transform.position.y + 1f))
+                {
+                    Instantiate(star, new Vector3(transform.parent.transform.position.x, transform.position.y + 2.5f, transform.position.z), Quaternion.identity);
+                    Debug.Log("not random");
+                }
+                else
+                {
+                    Instantiate(star, new Vector3(transform.position.x + randomRangeX, transform.position.y + randomRangeY, transform.position.z), Quaternion.identity);
+                    Debug.Log("random");
+                }
 		}
 		else
 		{
