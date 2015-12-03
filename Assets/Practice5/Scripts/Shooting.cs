@@ -61,10 +61,10 @@ public class Shooting : MonoBehaviour {
 			//Player.GetComponent<ScoreManager>().score += 10;          
 			//Instantiate(star, new Vector3(transform.position.x + 15f, transform.position.y, transform.position.z), Quaternion.identity);
             float randomRange=Random.Range(-19.0F, 19.0F);
-            if ((transform.position.x + randomRange > transform.parent.transform.position.x + 2f) || (transform.position.x + randomRange < transform.parent.transform.position.x - 2f))
-            Instantiate(star, new Vector3(transform.position.x + randomRange, transform.position.y, transform.position.z), Quaternion.identity);
+            if ((transform.position.x + randomRange > transform.parent.transform.position.x - 5f) && (transform.position.x + randomRange < transform.parent.transform.position.x + 5f))
+                Instantiate(star, new Vector3(transform.parent.transform.position.x + 10f, transform.position.y, transform.position.z), Quaternion.identity); 
             else
-                Instantiate(star, new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z), Quaternion.identity);
+                Instantiate(star, new Vector3(transform.position.x + randomRange, transform.position.y, transform.position.z), Quaternion.identity);
 
 		}
 		else

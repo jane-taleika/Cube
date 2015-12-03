@@ -20,6 +20,11 @@ public class PacmanMoveStarCreate : MonoBehaviour {
         {
             transform.position = new Vector3(xAxis, transform.position.y, transform.position.z);
         }
+        float yAxis = speed * Input.GetAxis("Vertical") + transform.position.y;
+        if (yAxis != 0)
+        {
+            transform.position = new Vector3(transform.position.x, yAxis, transform.position.z);
+        }
     }
 
 }
