@@ -16,8 +16,8 @@ void Update ()
 { 
 if (target) 
 { 
-Vector3 point = camera.WorldToViewportPoint(new Vector3(target.position.x, target.position.y+0.5f,target.position.z)); 
-Vector3 delta = new Vector3(target.position.x, target.position.y+0.5f,target.position.z) - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z)); 
+Vector3 point = camera.WorldToViewportPoint(new Vector3(target.position.x, transform.position.y ,target.position.z)); //target.position.y+0.5f
+Vector3 delta = new Vector3(target.position.x, transform.position.y ,target.position.z) - camera.ViewportToWorldPoint(new Vector3(0.5f, point.y, point.z)); //(new Vector3(0.5, 0.5, point.z)); 
 Vector3 destination = transform.position + delta; 
 
 
