@@ -42,7 +42,6 @@ public class StarRay : MonoBehaviour {
 		
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 2f) && hit.collider.gameObject.name == "Pacman") {
-				Camera.main.gameObject.transform.parent = null;
 				Destroy (hit.collider.gameObject);
 				Debug.Log ("Death Star ray destroy you");
 			}

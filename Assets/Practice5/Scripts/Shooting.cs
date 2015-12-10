@@ -6,6 +6,8 @@ public class Shooting : MonoBehaviour {
 	public float shootRange = 15f;
 	public GameObject star;
 	public Collider platform;
+	public GameObject shell;
+	public float numberOfShells;
 	float maxX;
 	float minX;
 	float maxY;
@@ -117,9 +119,18 @@ public class Shooting : MonoBehaviour {
 						Debug.Log("not random");
 					}					                                                           
 				}
+
 				Instantiate(star, starPosition, 
 				            Quaternion.identity);
 				//Debug.Log("random");
+			}
+
+			if(ScoreIncrease.Score%3 == 0){
+				for(int i = 0; i < numberOfShells; i++){
+					randomRangeX=Random.Range(transform.position.x-10f, transform.position.x+10f);
+					Instantiate(shell, new Vector3(randomRangeX, maxY, transform.position.z), 
+					            Quaternion.identity);
+				}
 			}
 		}
 		else
