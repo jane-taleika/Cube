@@ -26,7 +26,7 @@ public class StarRay : MonoBehaviour {
 			}
 		}
         Debug.Log("DeathStar on the way!");
-		Debug.Log ("min x =" + xMin + " max x = " + xMax);
+		//Debug.Log ("min x =" + xMin + " max x = " + xMax);
         //Instantiate(star, new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z), Quaternion.identity);
     }
 	
@@ -42,8 +42,8 @@ public class StarRay : MonoBehaviour {
 		
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 2f) && hit.collider.gameObject.name == "Pacman") {
-				Destroy (hit.collider.gameObject);
 				Debug.Log ("Death Star ray destroy you");
+				pacman.GetComponent<PacmanMoveStarCreate>().useLife();
 			}
 		}
 		float xAxis = transform.position.x;
@@ -51,7 +51,7 @@ public class StarRay : MonoBehaviour {
 			if (xAxis + 0.1f <= xMax) {
 				xAxis += 0.1f;
 				transform.position = new Vector3 (xAxis, transform.position.y, transform.position.z);
-				Debug.Log ("right");
+				//Debug.Log ("right");
 			} else {
 				flag = 1;
 			}
@@ -59,7 +59,7 @@ public class StarRay : MonoBehaviour {
 			if (xAxis - 0.1f >= xMin) {
 				xAxis -= 0.1f;
 				transform.position = new Vector3 (xAxis, transform.position.y, transform.position.z);
-				Debug.Log ("left");
+				//Debug.Log ("left");
 			}
 			else{
 				flag = 0;

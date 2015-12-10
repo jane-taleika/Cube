@@ -15,12 +15,11 @@ public class RedShellScript : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision){
 		string name = collision.gameObject.name;
-		Debug.Log (layer + " " + collision.gameObject.layer);
+		//Debug.Log (layer + " " + collision.gameObject.layer);
 		if (name.Equals ("Pacman")) {
 			Destroy (collision.gameObject);
 			Debug.Log ("Red Shell destroy you");
 		} else if (layer == collision.gameObject.layer) {
-
 			Destroy(gameObject, lifetime);
 		}
 	}
