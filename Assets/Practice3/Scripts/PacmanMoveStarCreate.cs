@@ -47,24 +47,25 @@ public class PacmanMoveStarCreate : MonoBehaviour {
     }
 
 	public void useLife(){
+		int n = canvas.transform.childCount;
+		Transform life = canvas.transform.GetChild(n-1);
+		lifeCount--;
+		Destroy(life.gameObject);
 		if(lifeCount > 1){
-			int n = canvas.transform.childCount;
-			Transform life = canvas.transform.GetChild(n-1);
-			Debug.Log("New life");
-			lifeCount--;
-			Debug.Log(lifeCount);
-			Destroy(life.gameObject);
+			Congrats.set ("New Life");
+			//Debug.Log("New life");
 			transform.position = new Vector3(0f, 5f, 0f);
 			Camera.main.transform.position = new Vector3(0f, 11.1f, -32.06f);
+			flashing ();
 		}
 		else{
 			Destroy(gameObject);
-			Debug.Log("Game Over");
+			Congrats.set ("Game Over");
+			//Debug.Log("Game Over");
 		}
-		flashing ();
 	}
 
-	public void flashing(){
+	void flashing(){
 		anim.enabled = true;
 		anim.Play(a.name);
 	}

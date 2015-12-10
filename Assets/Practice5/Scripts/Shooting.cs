@@ -74,9 +74,9 @@ public class Shooting : MonoBehaviour {
 		{
 			laserLine.SetPosition(1, hit.point);
 			Destroy(hit.collider.gameObject);
-			Debug.Log("You've destroyed Death Star");
+			Congrats.set ("You've destroyed Death Star");
+			//Debug.Log("You've destroyed Death Star");
 			ScoreIncrease.Score +=10;
-
             //float randomRangeX=Random.Range(-19.0F, 19.0F);
             //float randomRangeY = Random.Range(-3.0F, 10.0F);
 

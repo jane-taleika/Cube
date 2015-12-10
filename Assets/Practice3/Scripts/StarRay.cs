@@ -25,7 +25,8 @@ public class StarRay : MonoBehaviour {
 				xMin = child.position.x+2.5f;
 			}
 		}
-        Debug.Log("DeathStar on the way!");
+		Congrats.set ("DeathStar on the way!");
+        //Debug.Log("DeathStar on the way!");
 		//Debug.Log ("min x =" + xMin + " max x = " + xMax);
         //Instantiate(star, new Vector3(transform.position.x + 10f, transform.position.y, transform.position.z), Quaternion.identity);
     }
