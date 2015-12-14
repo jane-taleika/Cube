@@ -19,6 +19,7 @@ public class PacmanMoveStarCreate : MonoBehaviour {
 		mesh = transform.GetComponent<MeshRenderer> ();
 		lifeCount = 3;
         Debug.Log("Let's go pacman");
+		Congrats.set("Begin");
     }
 
     // Update is called once per frame
